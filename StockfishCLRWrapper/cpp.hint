@@ -1,0 +1,2 @@
+#define STOCKFISHCLRWRAPPER_API __declspec(dllexport)
+#define STOCKFISHCLRWRAPPER_API __declspec(dllimport)
