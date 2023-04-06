@@ -76,6 +76,7 @@ private:
 
 void init(OptionsMap&);
 void loop(int argc, char* argv[]);
+void go_wrapper();
 std::string value(Value v);
 std::string square(Square s);
 std::string move(Move m, bool chess960);

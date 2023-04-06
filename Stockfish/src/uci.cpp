@@ -149,7 +149,6 @@ namespace {
     Threads.start_thinking(pos, states, limits, ponderMode);
   }
 
-
   // bench() is called when the engine receives the "bench" command.
   // Firstly, a list of UCI commands is set up according to the bench
   // parameters, then it is run one by one, printing a summary at the end.
@@ -242,6 +241,8 @@ void UCI::loop(int argc, char* argv[]) {
   for (int i = 1; i < argc; ++i)
       cmd += std::string(argv[i]) + " ";
 
+  //go_wrapper(); TODO
+
   do {
       if (argc == 1 && !getline(cin, cmd)) // Wait for an input or an end-of-file (EOF) indication
           cmd = "quit";
@@ -299,6 +300,23 @@ void UCI::loop(int argc, char* argv[]) {
           sync_cout << "Unknown command: '" << cmd << "'. Type help for more information." << sync_endl;
 
   } while (token != "quit" && argc == 1); // The command-line arguments are one-shot
+}
+
+void UCI::go_wrapper()
+{
+    std::cout << "LOL";
+
+    Position pos;
+    string token, cmd;
+    StateListPtr states(new std::deque<StateInfo>(1));
+
+    pos.set(StartFEN, false, &states->back(), Threads.main());
+
+    Search::LimitsType limits;
+    limits.startTime = now();
+    limits.depth = 10;
+    Threads.start_thinking(pos, states, limits, false);
+    std::cout << "LOL2";
 }
 
 

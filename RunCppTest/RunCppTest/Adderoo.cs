@@ -2,7 +2,7 @@
 
 namespace RunCppTest
 {
-	public static class Adder
+	public static class Adderoo
 	{
 		[DllImport("StockfishCLRWrapper.dll")]
 		public static extern int MyFunction(int a, int b);

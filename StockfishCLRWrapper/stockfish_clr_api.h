@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "StockfishCLRWrapper.h"
 #include "../Stockfish/stockfish_internal_wrapper.h"
@@ -13,3 +14,5 @@ private:
 };
 
 extern "C" __declspec(dllexport) void StockfishClrApi_Init();
+extern "C" __declspec(dllexport) void StockfishClrApi_FindBestMove();
+extern "C" __declspec(dllexport) void StockfishClrApi_Subscribe_OnBestMove(Callback callback);

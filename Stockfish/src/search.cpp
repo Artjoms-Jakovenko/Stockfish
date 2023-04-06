@@ -34,9 +34,10 @@
 #include "tt.h"
 #include "uci.h"
 #include "syzygy/tbprobe.h"
+#include "../BestMoveEventHandler.cpp"
 
 namespace Stockfish {
-
+  BestMoveEventHandler eventHandler;
 namespace Search {
 
   LimitsType Limits;
@@ -247,6 +248,7 @@ void MainThread::search() {
       sync_cout << UCI::pv(bestThread->rootPos, bestThread->completedDepth) << sync_endl;
 
   sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
+  eventHandler.notify("b2b4");
 
   if (bestThread->rootMoves[0].pv.size() > 1 || bestThread->rootMoves[0].extract_ponder_from_tt(rootPos))
       std::cout << " ponder " << UCI::move(bestThread->rootMoves[0].pv[1], rootPos.is_chess960());
@@ -1907,6 +1909,10 @@ string UCI::pv(const Position& pos, Depth depth) {
   }
 
   return ss.str();
+}
+
+string pv_wrapper(const Position& pos, Depth depth) {
+    return "";
 }
 
 

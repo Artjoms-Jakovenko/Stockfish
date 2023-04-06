@@ -5,15 +5,23 @@
 //#include "../Stockfish/TestRun.h"
 #include "../StockfishCLRWrapper/stockfish_clr_api.h"
 #include "../StockfishCLRWrapper/stockfish_clr_api.cpp"
+#include <thread>
+
+void dth() {
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    StockfishClrApi_FindBestMove();
+}
 
 int main()
 {
     std::cout << "Hello World!\n";
-    //SimpleClass simpleClass;
-    //return simpleClass.AddNums(1, 2);
 
     StockfishClrApi_Init();
+    //std::thread t2(dth);
+    //t2.join();
+    StockfishClrApi_FindBestMove();
 }
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
